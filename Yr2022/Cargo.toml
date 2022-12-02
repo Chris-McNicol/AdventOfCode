@@ -1,0 +1,17 @@
+[package]
+name = "Yr2022"
+version = "0.1.0"
+edition = "2021"
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+
+[[bin]]
+name = "day_one"
+path = "src/day_one.rs"
+
+[[bin]]
+name = "day_two"
+path = "src/day_two.rs"
+
+[dependencies]
+lazy_static = "1.4.0"
