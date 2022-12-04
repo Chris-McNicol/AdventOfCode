@@ -17,5 +17,9 @@ path = "src/day_two.rs"
 name = "day_three"
 path = "src/day_three.rs"
 
+[[bin]]
+name = "day_four"
+path = "src/day_four.rs"
+
 [dependencies]
 lazy_static = "1.4.0"
