@@ -1,8 +1,6 @@
 from time import perf_counter_ns
 
 
-
-
 def calculate_total_priority(filename):
     contain_counter = 0
     overlap_counter = 0
