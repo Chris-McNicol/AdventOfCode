@@ -72,7 +72,7 @@ fn sum_priorities(my_file_name: &str) -> (u32, u32) {
     return (total_priority, total_group_priority)
 }
 
-
+/*
 fn other_faster_way_maybe() -> u32 {
     
     let faster_part_one : u32 = include_str!("C:\\Users\\Chris\\Documents\\CodeProjects\\AdventOfCode\\Yr2022\\PuzzleData\\puzzle_day_three.txt")
@@ -92,3 +92,5 @@ fn other_faster_way_maybe() -> u32 {
 
     return faster_part_one;
 }
+
+*/

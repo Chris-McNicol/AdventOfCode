@@ -4,7 +4,7 @@ def is_distinct(char_idx, line, length):
     return char_idx >= length and len(set(line[char_idx:char_idx+length])) == length
 
 
-def find_starts(filename, reverse=False):
+def find_starts(filename):
     packet_start, msg_start = None, None
     with open(filename, 'r') as file:        
         line = file.readline()
