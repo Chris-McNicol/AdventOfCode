@@ -28,8 +28,8 @@ def dir_size_dict(file_system):
     for key in file_system.keys():
         if key not in size_dict:
             dir_path = '/'.join(key.split('/')[:-1])
-            dir_size = dir_size(file_system, dir_path)
-            size_dict[dir_path] = dir_size
+            size_dict[dir_path] =  dir_size(file_system, dir_path)
+            
     return size_dict
 
 

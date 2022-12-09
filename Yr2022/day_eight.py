@@ -38,16 +38,14 @@ def scenic_score(arr, row_idx, col_idx):
     my_tree = arr[col_idx, row_idx]
     scenic_score = 1
     for dir_idx, direction in enumerate([left, right, up , down]):
-        found_blocker = False
+        
         iter_list = direction if dir_idx not in [0,2] else reversed(direction)
         for tree_idx, tree in enumerate(iter_list):
             if tree >= my_tree:
                 scenic_score *= (tree_idx+1)
-                found_blocker = True
                 break
-        if not found_blocker:
+        else:
             scenic_score *= len(direction)
-
     return scenic_score
 
 def max_scenic_score(arr):
