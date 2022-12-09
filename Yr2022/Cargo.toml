@@ -37,6 +37,10 @@ path = "src/day_seven.rs"
 name = "day_eight"
 path = "src/day_eight.rs"
 
+[[bin]]
+name = "day_nine"
+path = "src/day_nine.rs"
+
 [dependencies]
 lazy_static = "1.4.0"
 #ndarray = "0.15.6"
