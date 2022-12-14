@@ -53,9 +53,15 @@ path = "src/day_eleven.rs"
 name = "day_twelve"
 path = "src/day_twelve.rs"
 
+[[bin]]
+name = "day_thirteen"
+path = "src/day_thirteen.rs"
 
+[[bin]]
+name = "day_fourteen"
+path = "src/day_fourteen.rs"
 
 [dependencies]
 lazy_static = "1.4.0"
-#ndarray = "0.15.6"
-#regex = "1"
+serde = { version = "1.0.104", features = ["derive"] }
+serde_json = "1.0.48"
