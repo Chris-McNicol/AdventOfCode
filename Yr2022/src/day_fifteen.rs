@@ -188,7 +188,7 @@ fn search_beacons(my_file_name: &str) -> (usize, i64) {
     let row_idx: i64 = 2000000;
     let part_one = sensor_list.check_row(row_idx, true);
     let mut part_two : i64 = 0 ;
-    //let part_two_result = sensor_list.search_space(4000000);
+    let _part_two_result_slow = sensor_list.search_space(4000000);
     let part_two_result = sensor_list.search_space_better(4000000);
     match part_two_result {
         Some(val) => part_two = val,

@@ -65,6 +65,18 @@ path = "src/day_fourteen.rs"
 name = "day_fifteen"
 path = "src/day_fifteen.rs"
 
+[[bin]]
+name = "day_seventeen"
+path = "src/day_seventeen.rs"
+
+[[bin]]
+name = "day_eighteen"
+path = "src/day_eighteen.rs"
+
+[[bin]]
+name = "old_test"
+path = "src/old_test.rs"
+
 
 [dependencies]
 lazy_static = "1.4.0"
