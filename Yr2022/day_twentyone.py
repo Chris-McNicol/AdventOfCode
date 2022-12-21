@@ -49,11 +49,14 @@ def find_humn_val(cmd_lines, low_guess=0, high_guess=10_000_000_000_000):
             low_guess = med_guess
         if same_sign(high_val, med_val):
             high_guess = med_guess
-        med_guess = (high_guess+low_guess)/2
+        
         low_val = test_val(cmd_lines, low_guess)
         high_val = test_val(cmd_lines, high_guess)
         med_val = test_val(cmd_lines, med_guess)
-
+        if high_val == low_val:
+            break
+        med_guess = med_guess - med_val*(high_guess-low_guess)/(high_val-low_val)
+    
     return int(med_guess)
     
 

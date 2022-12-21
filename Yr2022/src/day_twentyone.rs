@@ -77,9 +77,10 @@ fn find_humn_val(input: &Vec<Vec<String>>, mut low_guess: f64, mut high_guess: f
     while med_val.abs() > 1e-6  {
         if same_sign(low_val, med_val) {       low_guess  = med_guess;   }
         else if same_sign(high_val, med_val) { high_guess = med_guess;  }
-        med_guess = (high_guess + low_guess) / 2.0;
+        //med_guess = (high_guess + low_guess) / 2.0;
         low_val = test_val(input, low_guess);
         high_val = test_val(input, high_guess);
+        med_guess = med_guess - med_val*(high_guess-low_guess)/(high_val-low_val);
         med_val = test_val(input, med_guess);
     }
     return med_guess;
