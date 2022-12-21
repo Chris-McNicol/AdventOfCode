@@ -56,7 +56,6 @@ def find_humn_val(cmd_lines, low_guess=0, high_guess=10_000_000_000_000):
         if high_val == low_val:
             break
         med_guess = med_guess - med_val*(high_guess-low_guess)/(high_val-low_val)
-    
     return int(med_guess)
     
 
