@@ -78,12 +78,28 @@ name = "day_nineteen"
 path = "src/day_nineteen.rs"
 
 [[bin]]
+name = "day_twenty"
+path = "src/day_twenty.rs"
+
+[[bin]]
 name = "day_twentyone"
 path = "src/day_twentyone.rs"
 
 [[bin]]
-name = "old_test"
-path = "src/old_test.rs"
+name = "day_twentytwo"
+path = "src/day_twentytwo.rs"
+
+[[bin]]
+name = "day_twentythree"
+path = "src/day_twentythree.rs"
+
+[[bin]]
+name = "day_twentyfour"
+path = "src/day_twentyfour.rs"
+
+[[bin]]
+name = "day_twentyfive"
+path = "src/day_twentyfive.rs"
 
 
 [dependencies]

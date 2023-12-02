@@ -7,11 +7,6 @@ from typing import Tuple, Set, List, Dict
 
 from dataclasses import dataclass
 
-#UPBITS = 0b00000111
-#DOWNBITS = 0b11100000
-#LEFTBITS = 0b00101001
-#RIGHTBITS = 0b10010100
-
 UPBITS = 0b11100000
 DOWNBITS = 0b00000111
 LEFTBITS = 0b10010100
@@ -66,8 +61,9 @@ class Arena:
         xs, ys = [pos[0] for pos in self.occupied], [pos[1] for pos in self.occupied]
         min_x, max_x = min(xs), max(xs)+1
         min_y, max_y = min(ys), max(ys)+1
-        total_area = (max_y-min_y)* (max_x - min_x)       
-        return total_area
+        total_area = (max_y-min_y)* (max_x - min_x)    
+        
+        return total_area - len(self.occupied)
         
 
     def print_arena(self):
@@ -94,16 +90,16 @@ def pathfind(filename: str):
                 occupied.add( (char_idx, line_idx ))
 
     arena = Arena(occupied=occupied)
-    arena.print_arena()
+    #arena.print_arena()
     for i in range(0, 10):        
         arena.calc_move(i)        
-        #arena.print_arena()
+       
     
     part_one = arena.get_empty()
     part_two, has_updated = 0, True
     arena_two = Arena(occupied=occupied)
     while has_updated:
-        #print(part_two)
+        
         has_updated = arena_two.calc_move(part_two)
         part_two += 1     
 

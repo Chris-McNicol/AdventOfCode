@@ -17,6 +17,7 @@ def shift_em(orig_list, num_shifts=10, decrypt_key = 811589153):
     for point in [1000, 2000, 3000]:
         new_point_index = (zero_pos + point) % len(pair_list)
         sum_list.append(pair_list[new_point_index][1])
+    print("SUM LIST ", zero_pos,  sum_list)
     return sum(sum_list)
     
 

@@ -32,10 +32,10 @@ def search_for_best_path(blocked, max_x, max_y):
         
 
 def wrap_val(val, max_val):
-    if 0 <= val <= max_val -1:
-        return val
-    if val < 0:
-        return (val)%max_val
+    #if 0 <= val <= max_val -1:
+    #    return val
+    #if val < 0:
+    #    return (val)%max_val
     return val % (max_val)
 
 
@@ -95,7 +95,8 @@ def pathfind(filename: str):
             blocked_this_turn.add(new_pos)
         
         blocked[i] = blocked_this_turn
-        
+    
+    print(f"MAX X {max_x} MAX Y {max_y}")
     part_one, part_two = search_for_best_path(blocked, max_x, max_y)
 
     return part_one, part_two
