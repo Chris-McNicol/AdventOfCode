@@ -44,10 +44,8 @@ class Game:
         return Game(id, [Handfull.from_str(h) for h in handfull_str_list])
 
     def is_possible(self, max_red=0, max_green=0, max_blue=0):
-        for handfull in self.handfulls:
-            if max_red < handfull.red or max_green < handfull.green or max_blue < handfull.blue:
-                return False
-        return True
+        max_hand = sum(self.handfulls)
+        return max_red >= max_hand.red and max_green >= max_hand.green and max_blue >= max_hand.blue
     
     @property
     def min_power(self):        
