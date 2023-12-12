@@ -55,7 +55,7 @@ class Universe:
             self.expand_horizontal(expand_col_idx + expand_col_counter*(expansion_factor-1), expansion_factor=expansion_factor)
         for expand_row_counter, expand_row_idx in enumerate(empty_rows):
             self.expand_vertical(expand_row_idx + expand_row_counter*(expansion_factor-1), expansion_factor=expansion_factor)
-        return
+        return self
     
     @staticmethod
     def taxicab(pos_one, pos_two):
@@ -70,12 +70,7 @@ if __name__ == "__main__":
     #filename = r'Yr2023\PuzzleData\Example.txt' 
     lines = get_lines(filename) 
     
-    universe = Universe.from_line_arr(lines)
-    universe.expand(expansion_factor=2)
-    part_one = universe.sum_distances()
-
-    universe_two = Universe.from_line_arr(lines)
-    universe_two.expand(expansion_factor=1_000_000)
-    part_two = universe_two.sum_distances()
+    part_one = Universe.from_line_arr(lines).expand(expansion_factor=2).sum_distances()
+    part_two = Universe.from_line_arr(lines).expand(expansion_factor=1_000_000).sum_distances()
 
     print(f"Part One: {part_one}    Part Two:  {part_two}")
