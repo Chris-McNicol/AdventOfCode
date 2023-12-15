@@ -19,6 +19,9 @@ def get_lines(file):
 class Platform:
     pos_arr: np.ndarray
     original_arr: np.ndarray
+
+    def __eq__(self, other):
+        return self.pos_arr == other.pos_arr
     
     def reset(self):
         self.pos_arr = self.original_arr.copy()
@@ -74,9 +77,11 @@ class CycleFinder:
         return CycleFinder(Platform.from_line_arr(line_arr), Platform.from_line_arr(line_arr))
 
     def find_cycles(self):
-        power = lam = 1        
+        ### Using Brent's Cycle Detection
+        ### https://en.wikipedia.org/wiki/Cycle_detection#Brent's_algorithm
+        power, lam, mu = 1, 1, 0
         self.hare.cycle()                
-        while self.tortoise.pos_arr != self.hare.pos_arr:            
+        while self.tortoise != self.hare: 
             if power == lam:                
                 self.tortoise.pos_arr = self.hare.pos_arr.copy()
                 power *= 2
@@ -87,8 +92,8 @@ class CycleFinder:
         self.tortoise.reset()
         self.hare.reset()        
         self.hare.cycle(num_cycles=lam)
-        mu = 0        
-        while self.tortoise.pos_arr != self.hare.pos_arr:
+        
+        while self.tortoise != self.hare:
             self.tortoise.cycle()
             self.hare.cycle()
             mu += 1
