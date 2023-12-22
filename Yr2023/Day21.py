@@ -40,7 +40,8 @@ class Garden:
         return ref_pos_real + ref_pos_imag*1j in self.rocks
        
     def valid_neighbours(self, pos):
-        return set([n_pos for n_pos in [pos+1, pos-1, pos+1j, pos-1j]])
+        #return set([n_pos for n_pos in [pos+1, pos-1, pos+1j, pos-1j]])
+        return set([n_pos for n_pos in [pos+1, pos-1, pos+1j, pos-1j] if 0<=n_pos.real<self.width and 0<=n_pos.imag<self.height])
     
     def nearby_plots(self, pos):
         return set([n_pos for n_pos in self.valid_neighbours(pos) if not self.is_rock(n_pos)])
@@ -48,18 +49,41 @@ class Garden:
     def next_step(self, current_step):
         return set([n_pos for pos in current_step for n_pos in self.nearby_plots(pos)])
     
-    def reachable_in_n_steps(self, n_steps, start=None, print_garden=False):        
-        current_step = set([self.start]) if start is None else set([start])        
-        output_vals = []        
-        for _i in tqdm.tqdm(range(n_steps)): 
+    
+    def dist_from_start(self, pos):
+        return abs(pos.real-self.start.real) + abs(pos.imag-self.start.imag)
+    
+    def reachable_in_n_steps(self, n_steps, part_two_N = 26_501_365, start=None, print_garden=False):
+        self.start = start if start is not None else self.start
+        current_step = set([self.start])
+        
+        output_vals = []
+        part_one, part_two = None, None
+        odd_total, even_total = 0,0
+        odd_corners, even_corners = 0,0
+        for _i in tqdm.tqdm(range(1, n_steps+1)): 
             if print_garden:
                 print(_i, len(current_step),  len(self.rocks))
                 self.print_step(current_step)
-            
+
+            if _i == 65:
+                part_one = len(current_step)
+
+            if _i % 2 == 0:
+                even_total = len(current_step)
+                even_corners = len([pos for pos in current_step if self.dist_from_start(pos) > 65])
+            else:
+                odd_total = len(current_step)
+                odd_corners = len([pos for pos in current_step if self.dist_from_start(pos) > 65])
+                        
             if _i % self.width == self.width//2:
                 output_vals.append( (_i, len(current_step) ))
             current_step = self.next_step(current_step)
-        return len(current_step), output_vals
+
+        N = (part_two_N - self.width//2)/self.width        
+        part_two = (odd_total)*(N**2) + (N+1)*(N+1)*even_total - ((N+1) * odd_corners) + (N*even_corners)  + (N+0.5)*324
+        
+        return part_one, int(part_two)
     
     def print_step(self, step):
         print("-------------------------------------------")
@@ -67,7 +91,7 @@ class Garden:
             print(''.join('#' if x+y*1j in step else '.' for x in range(0, self.width)))
         print("-------------------------------------------")
 
-
+    '''
     def quadratic_fit(self, big_N = 26_501_365):
         _, val_list = self.reachable_in_n_steps(n_steps = int(2.5*self.width) + 1)
         
@@ -78,7 +102,7 @@ class Garden:
         n = big_N//self.width
         estimate = b0 + b1*n + (n*(n-1)//2)*(b2-b1)
         return estimate
-
+    '''
        
 
 if __name__ == "__main__":
@@ -89,9 +113,8 @@ if __name__ == "__main__":
 
     lines = get_lines(filename)    
     garden = Garden.from_lines(lines)
-    part_one, part_two = None, None
+    
 
-    part_one, _ = garden.reachable_in_n_steps(n_steps=n_steps)
-    part_two = garden.quadratic_fit(big_N = 26_501_365)
+    part_one, part_two = garden.reachable_in_n_steps(n_steps = 135)
 
     print(f"Part One: {part_one}    Part Two:  {part_two}")
